@@ -2,6 +2,14 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("kotlin-kapt")
+
+   // id("com.google.devtools.ksp") version "1.9.22-1.0.20" // Match Kotlin version
+
+
+
+
+    // or: id("kotlin-kapt"
 }
 
 android {
@@ -38,12 +46,43 @@ android {
         compose = true
     }
 
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.15"
+    }
+
+
 
 }
 
 dependencies {
 
+    implementation(libs.androidx.runtime.android)
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.7.0")
 
+
+    // Retrofit and Hillt
+     implementation ("com.google.dagger:hilt-android:2.57")
+// kapt ("com.google.dagger:hilt-compiler:2.50")
+    kapt("com.google.dagger:hilt-compiler:2.57")
+ //   ksp("com.google.dagger:hilt-compiler:2.57")
+
+
+
+    // kapt ("com.google.dagger:hilt-compiler:2.50")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation ("com.squareup.retrofit2:retrofit:3.0.0")
+    implementation ("com.squareup.retrofit2:converter-gson:3.0.0")
+
+    implementation ("androidx.room:room-runtime:2.6.1")
+    implementation(libs.androidx.navigation.runtime.android)
+    annotationProcessor ("androidx.room:room-compiler:2.6.1")
+    implementation ("androidx.room:room-ktx:2.6.1")
+  //  ksp("androidx.room:room-compiler:2.6.1")
+
+
+    // Jetpack Compose Navigatione4
+    implementation("androidx.navigation:navigation-compose:2.7.7")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
